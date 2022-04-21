@@ -8,7 +8,7 @@ class Star {
     reset();
   }
   
-  void update() {
+  void update () {
     alpha += update_rate;
     drawStar(color(255, -abs(alpha - 255) + 255));
     if (alpha > 512) {

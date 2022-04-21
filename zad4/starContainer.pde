@@ -9,13 +9,11 @@ class StarContainer {
   }
   
   void update () {
-    if (stars.size() < 600) {
+    if (stars.size() < 1200) {
       stars.add(new Star());
     }
-    print(stars.size(), "\n");
     for (Star star : stars) {
       star.update();
     }
   }
-
 }

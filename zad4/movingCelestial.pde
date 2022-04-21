@@ -1,25 +1,28 @@
 class MovingCelestial extends Celestial {
   
   // Orbit radius, orbiting speed, orbit squish, random start rotation
-  float orbit, speed, squish, start;
+  float orbit, baseSpeed, squish;
   
-  MovingCelestial(float radius, int points, color fill, float orbit, float squish, float speed) {
-    super(radius, points, fill);
+  // Keep celestial rotation and distance
+  float rotation, distance, speed;
+  
+  MovingCelestial(float radius, int points, color fill, PImage texture, float orbit, float squish, float baseSpeed) {
+    super(radius, points, fill, texture);
     this.orbit = orbit;
     this.squish = squish;
-    this.speed = speed;
-    start = random(-10, 10);
+    this.baseSpeed = baseSpeed;
+    this.rotation = random(-10, 10);
+    this.distance = orbit + cos(rotation*2) * squish;
   }
   
-  void drawCelestial (float time) {
+  void drawCelestial (float delta) {
     
     // Calculate parameters
-    float rotation = speed * time + start;
-    float distance = orbit + cos(rotation*2) * squish;
-    float distance_max = orbit + squish;
-    float distance_min = orbit - squish;
+    rotation += speed * delta;
+    distance = orbit + cos(rotation*2) * squish;
     
-    
+    // Speed depends on distance
+    speed = baseSpeed - 0.9 * (baseSpeed * distance / (orbit + squish));
     
     // Draw orbit
     drawOrbit();
@@ -28,7 +31,7 @@ class MovingCelestial extends Celestial {
     pushMatrix();
     rotate(rotation);
     translate(0, distance);
-    super.drawCelestial(time);
+    super.drawCelestial(delta);
     popMatrix();
   }
   
@@ -36,21 +39,13 @@ class MovingCelestial extends Celestial {
     
     pushStyle();
     fill(#888888);
-    stroke(0);
-    //beginShape();
-    //vertex(0, 0);
-    //vertex(0, 100);
-    //vertex(50, 50);
-    //endShape();
-    
+    stroke(0, 0);
     float steps = orbit/3;
-    
     beginShape();
     for(float i=0; i<PI*2; i+=PI/steps) {
-      float distance = orbit + cos(i*2) * squish;
       pushMatrix();
       rotate(i);
-      rect(0, distance, 4, 2);
+      rect(0, orbit + cos(i*2) * squish - 2, 4, 2);
       popMatrix();
     }
     endShape();
