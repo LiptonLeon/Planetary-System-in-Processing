@@ -16,11 +16,11 @@ class Celestial {
     satellites = new ArrayList<Celestial>();
   }
   
-  void add_satellite (Celestial satellite) {
+  void addSatellite (Celestial satellite) {
     satellites.add(satellite);
   }
   
-  void draw_celestial (float time) {
+  void drawCelestial (float time) {
     
     // Draw celestial
     pushStyle();
@@ -33,7 +33,7 @@ class Celestial {
     
     // Draw sattelites
     for (Celestial satellite : satellites) {
-      satellite.draw_celestial(time);
+      satellite.drawCelestial(time);
     }
   }
   

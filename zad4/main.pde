@@ -1,7 +1,7 @@
 import java.util.List;
 
 // Global variables 
-Celestial star;
+Celestial sun;
 Celestial planet;
 StarContainer starContainer = new StarContainer();
 PImage img;
@@ -18,7 +18,7 @@ void setup() {
   
   // Create celestials (sun is global)
   //                           Radius | Vertexes | Color | Squish | Orbit |Speed
-  star = new Celestial(45, circle, #FFFF55);
+  sun = new Celestial(45, circle, #FFFF55);
   Celestial planet1 = new MovingCelestial(9, circle, #FFAA33, 75, 5, 0.03);
   Celestial planet2 = new MovingCelestial(13, circle, #884444, 130, 10, 0.02);
   Celestial planet3 = new MovingCelestial(17, circle, #11FF55, 240, 25, 0.01);
@@ -34,21 +34,21 @@ void setup() {
   Celestial moon8 = new MovingCelestial(2, square, #FF00FF, 69, 0, 0.012);
   
   // Add planets to sun
-  star.add_satellite(planet1);
-  star.add_satellite(planet2);
-  star.add_satellite(planet3);
-  star.add_satellite(planet4);
-  star.add_satellite(planet5);
+  sun.addSatellite(planet1);
+  sun.addSatellite(planet2);
+  sun.addSatellite(planet3);
+  sun.addSatellite(planet4);
+  sun.addSatellite(planet5);
   
   // Add moons to planets
-  planet1.add_satellite(moon1);
-  planet2.add_satellite(moon2);
-  planet3.add_satellite(moon3);
-  planet3.add_satellite(moon4);
-  planet4.add_satellite(moon5);
-  planet4.add_satellite(moon6);
-  planet4.add_satellite(moon7);
-  planet4.add_satellite(moon8);
+  planet1.addSatellite(moon1);
+  planet2.addSatellite(moon2);
+  planet3.addSatellite(moon3);
+  planet3.addSatellite(moon4);
+  planet4.addSatellite(moon5);
+  planet4.addSatellite(moon6);
+  planet4.addSatellite(moon7);
+  planet4.addSatellite(moon8);
   
   img = loadImage("smile.png");
 }
@@ -56,8 +56,8 @@ void setup() {
 void draw() {
   
   // Transform system
-    float time = millis()/10;
-    background(0);
+  float time = millis()/10;
+  background(0);
   starContainer.update();
   translate(width/2, height/2);
   scale(0.90);
@@ -65,7 +65,7 @@ void draw() {
   
   // Draw system
 
-  star.draw_celestial(time);
+  sun.drawCelestial(time);
   pushMatrix();
   scale(1.2);
   rotate(-PI/2);
