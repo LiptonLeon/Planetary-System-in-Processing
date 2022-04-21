@@ -24,6 +24,7 @@ class Celestial {
     
     // Draw celestial
     pushStyle();
+    stroke(0, 0, 0, 0);
     fill(fill);
     pushMatrix();
     scale(radius);

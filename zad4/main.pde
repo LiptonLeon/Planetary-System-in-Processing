@@ -17,17 +17,17 @@ void setup() {
   int square = 4;
   
   // Create celestials (sun is global)
-  //                           Radius | Vertexes | Color | Squish | Orbit |Speed
-  sun = new Celestial(45, circle, #FFFF55);
+  //                           Radius | Vertexes | Color | Orbit | Squish |Speed
+  sun = new Celestial(40, circle, #FFFF55);
   Celestial planet1 = new MovingCelestial(9, circle, #FFAA33, 75, 5, 0.03);
   Celestial planet2 = new MovingCelestial(13, circle, #884444, 130, 10, 0.02);
   Celestial planet3 = new MovingCelestial(17, circle, #11FF55, 240, 25, 0.01);
   Celestial planet4 = new MovingCelestial(20, circle, #AAAAFF, 390, 25, 0.004);
-  Celestial planet5 = new MovingCelestial(7, circle,  #99AA99, 490, 30, 0.002);
+  Celestial planet5 = new MovingCelestial(7, circle,  #99AA99, 490, 45, 0.002);
   Celestial moon1 = new MovingCelestial(3, circle, #FF2468, 16, 0, 0.07);
   Celestial moon2 = new MovingCelestial(3, circle, #AAFFAA, 20, 1, 0.002);
-  Celestial moon3 = new MovingCelestial(7, square, #AAFFAA, 54, 0, 0.009);
-  Celestial moon4 = new MovingCelestial(8, square, #884411, 35, 0, 0.014);
+  Celestial moon3 = new MovingCelestial(6, square, #AAFFAA, 54, -2, 0.009);
+  Celestial moon4 = new MovingCelestial(8, square, #884411, 35, -4, 0.014);
   Celestial moon5 = new MovingCelestial(4, circle, #AAFFAA, 32, 0, 0.016);
   Celestial moon6 = new MovingCelestial(5, circle, #FFFFFF, 44, 0, 0.014);
   Celestial moon7 = new MovingCelestial(6, 6, #00FFFF, 56, 0, 0.013);
@@ -60,7 +60,6 @@ void draw() {
   background(0);
   starContainer.update();
   translate(width/2, height/2);
-  scale(0.90);
   rotate(PI/2);
   
   // Draw system

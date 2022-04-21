@@ -11,7 +11,7 @@ class MovingCelestial extends Celestial {
     start = random(-10, 10);
   }
   
-  void drawCelestial (float time) {
+  void draw_celestial (float time) {
     
     // Calculate parameters
     float rotation = speed * time + start;
@@ -19,42 +19,18 @@ class MovingCelestial extends Celestial {
     float distance_max = orbit + squish;
     float distance_min = orbit - squish;
     
-    
-    
     // Draw orbit
-    drawOrbit();
+    fill(0, 0, 0, 0);
+    stroke(#ffffff, 20);
+    ellipse(0, 0, distance_min * 2, distance_max * 2);
+    stroke(0, 0, 0, 0);
     
     // Draw celestial
     pushMatrix();
-    rotate(rotation);
-    translate(0, distance);
-    super.drawCelestial(time);
+    rotate(rotation);  
+    translate(0, distance );
+    super.draw_celestial(time);
     popMatrix();
-  }
-  
-  void drawOrbit () {
-    
-    pushStyle();
-    fill(#888888);
-    stroke(0);
-    //beginShape();
-    //vertex(0, 0);
-    //vertex(0, 100);
-    //vertex(50, 50);
-    //endShape();
-    
-    float steps = orbit/3;
-    
-    beginShape();
-    for(float i=0; i<PI*2; i+=PI/steps) {
-      float distance = orbit + cos(i*2) * squish;
-      pushMatrix();
-      rotate(i);
-      rect(0, distance, 4, 2);
-      popMatrix();
-    }
-    endShape();
-    popStyle();
   }
   
 }
