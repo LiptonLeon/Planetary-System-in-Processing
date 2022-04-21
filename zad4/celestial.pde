@@ -6,7 +6,7 @@ class Celestial implements Dynamic {
   PImage texture;
   List<Celestial> satellites;
   
-  Celestial (float radius, int points, color fill, PImage texture) {
+  Celestial(float radius, int points, color fill, PImage texture) {
     this.radius = radius;
     this.points = points;
     this.fill = fill;
@@ -14,11 +14,11 @@ class Celestial implements Dynamic {
     satellites = new ArrayList<Celestial>();
   }
   
-  void addSatellite (Celestial satellite) {
+  void addSatellite(Celestial satellite) {
     satellites.add(satellite);
   }
   
-  void update (float time) {
+  void update(float time) {
     
     // Draw celestial
     stroke(0, 0, 0, 0);

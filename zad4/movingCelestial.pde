@@ -16,7 +16,7 @@ class MovingCelestial extends Celestial {
   }
   
   // Call every frame
-  void update (float delta) {
+  void update(float delta) {
     
     // Calculate parameters
     rotation += speed * delta;
@@ -36,7 +36,7 @@ class MovingCelestial extends Celestial {
     popMatrix();
   }
   
-  void drawOrbit () {
+  void drawOrbit() {
     pushMatrix();
     pushStyle();
     beginShape();
@@ -55,7 +55,7 @@ class MovingCelestial extends Celestial {
   
   // Orbit's shape is ellipse
   // Formula: https://math.stackexchange.com/questions/432902/how-to-get-the-radius-of-an-ellipse-at-a-specific-angle-by-knowing-its-semi-majo
-  float calculateDistance (float angle) {
+  float calculateDistance(float angle) {
     float a = orbit + squish;
     float b = orbit - squish;
     return a * b / sqrt(a*a * sin(angle)*sin(angle) + b*b * cos(angle)*cos(angle));

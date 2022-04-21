@@ -4,12 +4,12 @@ class StarContainer implements Dynamic {
   float y = height;
   List<Star> stars;
   
-  StarContainer () {
+  StarContainer() {
     stars = new ArrayList<Star>();
   }
   
   // Call every frame
-  void update (float delta) {
+  void update(float delta) {
     if (stars.size() < 1200) {
       stars.add(new Star());
       stars.add(new Star());
