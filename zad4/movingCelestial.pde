@@ -24,7 +24,6 @@ class MovingCelestial extends Celestial {
     
     // Speed depends on distance
     speed = baseSpeed - 0.9 * (baseSpeed * distance / (orbit + squish));
-    if (orbit == 75) print(speed, "", delta, "\n");
     
     // Draw orbit
     drawOrbit();

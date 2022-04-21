@@ -2,7 +2,7 @@ class Star implements Dynamic {
   
   float x, y;
   float alpha = 0;
-  float alpha_rate = 10;
+  float alpha_rate = 200;
   
   Star() { 
     reset();

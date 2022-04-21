@@ -1,10 +1,5 @@
 import java.util.List;
 
-// Global variables 
-Celestial sun;
-StarContainer starContainer = new StarContainer();
-FadeMask fade = new FadeMask();
-
 List<Dynamic> dynamicList;
 float delta;
 
@@ -13,19 +8,17 @@ void setup() {
   // P3D caused problems with draw order, used P2D instead
   size(1280, 960, P2D);
   
-  // Cache delta
-  float fps = 144.0;
-  frameRate(fps);
-  delta = 1.0/fps;
-  
+  // Fps cap
+  frameRate(144);
   
   // Vertex count consts
   int circle = 64;
   int square = 4;
   
-  // Create celestials (sun is global)
-  //                          | Radius | Vertexes | Color |              Texture                | Orbit | Squish |Speed
-  sun =               new StaticCelestial(40, circle, #FFFF55, loadImage("assets/sun.png"), width/2, height/2);
+  // Create sun                     | Radius | Vertexes | Color |          Texture         |   x   |   y   |
+  Celestial sun =     new StaticCelestial(40, circle, #FFFF55, loadImage("assets/sun.png"), width/2, height/2);
+  
+  // Create moving celestials       | Radius | Vertexes | Color |           Texture            | Orbit | Squish | Speed |
   Celestial planet1 = new MovingCelestial(9, circle, #FFFFFF, loadImage("assets/planet_infernal.png"), 75, 5, 3);
   Celestial planet2 = new MovingCelestial(13, circle, #FFFFFF, loadImage("assets/planet_sweet.png") , 130, 10, 2);
   Celestial planet3 = new MovingCelestial(17, circle, #FFFFFF, loadImage("assets/planet_terra.png") , 240, 25, 1);
@@ -63,9 +56,21 @@ void setup() {
   dynamicList.add(new FadeMask());
 }
 
+// For delta calculations
+float lastMillis = millis();
+
 void draw() {
+  
+  // Clear screen
   background(0);
+  
+  // Calculate delta
+  float delta = (millis() - lastMillis) / 1000.0;
+  lastMillis = millis();
+  
+  // Update dynamic elements
   for(Dynamic element : dynamicList){
     element.update(delta);
   }
+  
 }

@@ -1,10 +1,10 @@
 class FadeMask implements Dynamic {
   
   float alpha;
-  float alpha_rate = 60;
+  float alpha_rate = 120;
   
   FadeMask () {
-    alpha = 255;
+    alpha = 450;
   }
   
   // Call every frame
