@@ -1,11 +1,7 @@
-class Celestial {
+class Celestial implements Dynamic {
  
-  // Celestial radius
   float radius;
-  
-  // Amout of vertexes
   int points;
-  
   color fill;
   PImage texture;
   List<Celestial> satellites;
@@ -22,7 +18,7 @@ class Celestial {
     satellites.add(satellite);
   }
   
-  void drawCelestial (float time) {
+  void update (float time) {
     
     // Draw celestial
     stroke(0, 0, 0, 0);
@@ -34,11 +30,11 @@ class Celestial {
     
     // Draw sattelites
     for (Celestial satellite : satellites) {
-      satellite.drawCelestial(time);
+      satellite.update(time);
     }
   }
   
-  // Draw circle using vertexes
+  // Draws circle using vertexes
   void drawCircle(int steps, float radius) {
     pushMatrix();
     pushStyle();
@@ -53,14 +49,14 @@ class Celestial {
   }
   
   void drawTexture() {
-      pushMatrix();
-      float scale = radius / texture.width * 2;
-      translate(-texture.width * scale /2, -texture.width * scale /2);
-      scale(scale);
-      pushStyle();
-      tint(fill);
-      image(texture, 0, 0);
-      popStyle();
-      popMatrix();
+    pushMatrix();
+    float scale = radius / texture.width * 2;
+    translate(-texture.width * scale /2, -texture.width * scale /2);
+    scale(scale);
+    pushStyle();
+    tint(fill);
+    image(texture, 0, 0);
+    popStyle();
+    popMatrix();
   }
 }

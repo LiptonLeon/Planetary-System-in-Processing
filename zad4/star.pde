@@ -1,15 +1,16 @@
-class Star {
+class Star implements Dynamic {
   
   float x, y;
   float alpha = 0;
-  float update_rate = 5;
+  float alpha_rate = 10;
   
   Star() { 
     reset();
   }
   
-  void update () {
-    alpha += update_rate;
+  // Call every frame
+  void update (float delta) {
+    alpha += alpha_rate * delta;
     drawStar(color(255, -abs(alpha - 255) + 255));
     if (alpha > 512) {
       reset();

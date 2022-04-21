@@ -15,14 +15,16 @@ class MovingCelestial extends Celestial {
     this.distance = orbit + cos(rotation*2) * squish;
   }
   
-  void drawCelestial (float delta) {
+  // Call every frame
+  void update (float delta) {
     
     // Calculate parameters
     rotation += speed * delta;
-    distance = orbit + cos(rotation*2) * squish;
+    distance = calculateDistance(rotation);
     
     // Speed depends on distance
     speed = baseSpeed - 0.9 * (baseSpeed * distance / (orbit + squish));
+    if (orbit == 75) print(speed, "", delta, "\n");
     
     // Draw orbit
     drawOrbit();
@@ -31,25 +33,33 @@ class MovingCelestial extends Celestial {
     pushMatrix();
     rotate(rotation);
     translate(0, distance);
-    super.drawCelestial(delta);
+    super.update(delta);
     popMatrix();
   }
   
   void drawOrbit () {
-    
+    pushMatrix();
     pushStyle();
-    fill(#888888);
-    stroke(0, 0);
-    float steps = orbit/3;
     beginShape();
-    for(float i=0; i<PI*2; i+=PI/steps) {
-      pushMatrix();
-      rotate(i);
-      rect(0, orbit + cos(i*2) * squish - 2, 4, 2);
-      popMatrix();
+    
+    fill(0, 0);
+    stroke(#222222);
+    for (int i = 0; i <= int(orbit); i++) {
+      float angle = TWO_PI * (float)i / orbit;
+      vertex(sin(angle) * calculateDistance(angle), cos(angle) * calculateDistance(angle));
     }
+    
     endShape();
     popStyle();
+    popMatrix();
+  }
+  
+  // Orbit's shape is ellipse
+  // Formula: https://math.stackexchange.com/questions/432902/how-to-get-the-radius-of-an-ellipse-at-a-specific-angle-by-knowing-its-semi-majo
+  float calculateDistance (float angle) {
+    float a = orbit + squish;
+    float b = orbit - squish;
+    return a * b / sqrt(a*a * sin(angle)*sin(angle) + b*b * cos(angle)*cos(angle));
   }
   
 }
