@@ -37,7 +37,6 @@ class MovingCelestial extends Celestial {
   }
   
   void drawOrbit() {
-    pushMatrix();
     pushStyle();
     beginShape();
     
@@ -47,10 +46,8 @@ class MovingCelestial extends Celestial {
       float angle = TWO_PI * (float)i / orbit;
       vertex(sin(angle) * calculateDistance(angle), cos(angle) * calculateDistance(angle));
     }
-    
     endShape();
     popStyle();
-    popMatrix();
   }
   
   // Orbit's shape is ellipse

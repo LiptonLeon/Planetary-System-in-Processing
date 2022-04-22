@@ -40,7 +40,7 @@ void setup() {
   
   // Add dynamic elements to list
   dynamicList = new ArrayList<Dynamic>();
-  dynamicList.add(new StarContainer());
+  dynamicList.add(new StarBackground());
   dynamicList.add(sun);
   dynamicList.add(new FadeMask());
 }
@@ -53,6 +53,7 @@ void draw() {
   // Calculate delta
   float delta = (millis() - lastMillis) / 1000.0;
   lastMillis = millis();
+  print("Fps:", 1/delta, "\n");
   
   // Update dynamic elements
   for (Dynamic element : dynamicList) {
