@@ -24,8 +24,10 @@ class Celestial implements Dynamic {
     stroke(0, 0, 0, 0);
     if (texture != null) {
       drawTexture();
-    } else {
+    } else if (points != 0) {
       drawCircle(points, radius);
+    } else {
+      drawCircle(int(radius * 3), radius);
     }
     
     // Draw sattelites
