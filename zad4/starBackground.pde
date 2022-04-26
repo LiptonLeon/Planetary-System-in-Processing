@@ -1,4 +1,4 @@
-class StarBackground implements Dynamic {
+class StarBackground implements Updateable {
 
   PImage noise = loadImage("assets/noise.png");
   PImage starMask = loadImage("assets/star_mask.png");

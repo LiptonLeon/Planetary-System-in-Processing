@@ -1,4 +1,4 @@
-class FadeMask implements Dynamic {
+class FadeMask implements Updateable {
   
   float alpha;
   float alpha_rate = 160;

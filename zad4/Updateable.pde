@@ -1,5 +1,5 @@
 // Dynamic is updated every frame in draw() function.
-interface Dynamic {
+interface Updateable {
   
   // Call every frame
   void update(float delta);

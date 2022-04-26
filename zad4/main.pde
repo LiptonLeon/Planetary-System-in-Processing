@@ -1,7 +1,7 @@
 import java.util.List;
 
 // Globals
-List<Dynamic> dynamicList;
+List<Updateable> updateableList;
 float lastMillis = millis();
 
 void setup() {
@@ -13,8 +13,8 @@ void setup() {
   // Fps cap
   frameRate(200);
   
-  // Create sun                    | Radius | Vertexes | Color |            Texture             |   x   |   y   |
-  Celestial sun =     new StaticCelestial(40, 0, #FFFF55, loadImage("assets/sun.png")        , 0, 0);
+  // Create sun                    | Radius | Vertexes | Color |            Texture            | x | y |
+  Celestial sun =     new StaticCelestial(40, 0, #FFFF55, loadImage("assets/sun.png")          , 0, 0);
   
   // Create planets                | Radius | Vertexes | Color |            Texture             | Orbit | Squish | Speed |
   sun.addSatellite(new OrbitingCelestial(9, 0, #FFFFFF, loadImage("assets/planet_infernal.png"), 75, 5, 3));
@@ -34,10 +34,10 @@ void setup() {
   sun.satellites.get(3).addSatellite(new OrbitingCelestial(3, 4, #FF00FF, null                                   , 69, 0, 1.2));
   
   // Add dynamic elements to list
-  dynamicList = new ArrayList<Dynamic>();
-  dynamicList.add(new StarBackground());
-  dynamicList.add(sun);
-  dynamicList.add(new FadeMask());
+  updateableList = new ArrayList<Updateable>();
+  updateableList.add(new StarBackground());
+  updateableList.add(sun);
+  updateableList.add(new FadeMask());
 }
 
 void draw() {
@@ -54,7 +54,7 @@ void draw() {
   translate(width/2, height/2);
   
   // Update dynamic elements
-  for (Dynamic element : dynamicList) {
+  for (Updateable element : updateableList) {
     element.update(delta);
   }
 }

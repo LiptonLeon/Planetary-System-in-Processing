@@ -1,4 +1,4 @@
-class Star implements Dynamic {
+class Star implements Updateable {
   
   float x, y;
   float alpha = 0;

@@ -1,4 +1,4 @@
-class Celestial implements Dynamic {
+class Celestial implements Updateable {
  
   float radius;
   int points;
@@ -59,8 +59,9 @@ class Celestial implements Dynamic {
   // Draws textured circle (worked faster than sprites during testing)
   void drawTexture() {   
     pushMatrix();
-    pushStyle();;
+    pushStyle();
     beginShape();
+    tint(fill);
     texture(texture);
     for (int i = 0; i < points; ++i) {
       float cos_itd = cos(TWO_PI * (float)i / points);

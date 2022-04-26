@@ -1,4 +1,4 @@
-class StarContainer implements Dynamic {
+class StarContainer implements Updateable {
 
   float x = width;
   float y = height;
