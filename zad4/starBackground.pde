@@ -25,7 +25,6 @@ class StarBackground implements Updateable {
     beginShape();
     
     float size = max(height, width) * 0.5;  
-    //translate(width/2, height/2);
     
     textureWrap(REPEAT);
     texture(noise);

@@ -1,4 +1,4 @@
-// Dynamic is updated every frame in draw() function.
+// Updateable is updated every frame in draw() function.
 interface Updateable {
   
   // Call every frame

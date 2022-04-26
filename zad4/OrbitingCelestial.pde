@@ -3,8 +3,8 @@ class OrbitingCelestial extends Celestial {
   // Orbit radius, orbiting speed, orbit squish, random start rotation
   float orbit, baseSpeed, squish;
   
-  // Keep celestial rotation and distance
-  float rotation, distance, speed;
+  // Keep celestial rotation and speed
+  float rotation, speed;
   
   OrbitingCelestial(float radius, int points, color fill, PImage texture, float orbit, float squish, float baseSpeed) {
     super(radius, points, fill, texture);
@@ -12,7 +12,6 @@ class OrbitingCelestial extends Celestial {
     this.squish = squish;
     this.baseSpeed = baseSpeed;
     this.rotation = random(-10, 10);
-    this.distance = orbit + cos(rotation*2) * squish;
   }
   
   // Call every frame
@@ -20,7 +19,7 @@ class OrbitingCelestial extends Celestial {
     
     // Calculate parameters
     rotation += speed * delta;
-    distance = calculateDistance(rotation);
+    float distance = calculateDistance(rotation);
     
     // Speed depends on distance
     speed = baseSpeed - 0.9 * (baseSpeed * distance / (orbit + squish));
