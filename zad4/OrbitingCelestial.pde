@@ -1,4 +1,4 @@
-class MovingCelestial extends Celestial {
+class OrbitingCelestial extends Celestial {
   
   // Orbit radius, orbiting speed, orbit squish, random start rotation
   float orbit, baseSpeed, squish;
@@ -6,7 +6,7 @@ class MovingCelestial extends Celestial {
   // Keep celestial rotation and distance
   float rotation, distance, speed;
   
-  MovingCelestial(float radius, int points, color fill, PImage texture, float orbit, float squish, float baseSpeed) {
+  OrbitingCelestial(float radius, int points, color fill, PImage texture, float orbit, float squish, float baseSpeed) {
     super(radius, points, fill, texture);
     this.orbit = orbit;
     this.squish = squish;

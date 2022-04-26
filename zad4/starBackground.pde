@@ -25,7 +25,7 @@ class StarBackground implements Dynamic {
     beginShape();
     
     float size = max(height, width) * 0.5;  
-    translate(width/2, height/2);
+    //translate(width/2, height/2);
     
     textureWrap(REPEAT);
     texture(noise);
@@ -42,10 +42,12 @@ class StarBackground implements Dynamic {
   
   // Draw star mask
   void drawMask(){
+    pushMatrix();
     beginShape();
     
     textureWrap(NORMAL); 
     texture(starMask);
+    translate(-width/2, -height/2);
     
     vertex(0, 0, 0, 0);
     vertex(width, 0, width, 0);
@@ -53,6 +55,7 @@ class StarBackground implements Dynamic {
     vertex(0, height, 0, height);
     
     endShape();
+    popMatrix();
   }
   
 }

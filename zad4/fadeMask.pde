@@ -5,7 +5,7 @@ class FadeMask implements Dynamic {
   
   FadeMask() {
     // Alpha exceeds 255 to keep screen black for a while
-    alpha = 500;
+    alpha = 1400;
   }
   
   // Call every frame
@@ -16,7 +16,7 @@ class FadeMask implements Dynamic {
     }
     pushStyle();
     fill(#000000, alpha);
-    rect(0, 0, width, height);
+    rect(-width/2, -height/2, width, height);
     popStyle();
   }
   
