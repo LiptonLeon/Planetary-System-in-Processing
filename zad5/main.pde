@@ -19,26 +19,26 @@ void setup() {
   //  Create sun
   pushStyle();
   emissive(255, 220, 200);
-  PShape shape = createShape(SPHERE, 40);
-  shape.setTexture(loadImage("assets/sun.png"));  
+  PShape sunShape = createShape(SPHERE, 60);
+  sunShape.setTexture(loadImage("assets/sun.png"));  
   popStyle();
-  Celestial sun = new StaticCelestial(shape, 0, 0);
+  Celestial sun = new StaticCelestial(sunShape, 0, 0);
   
   //  Create planets
-  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 9), 75, 5, -PI/16, 3));
+  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 9), 95, 5, -PI/16, 3));
   sun.satellites.get(0).shininess = 0.8;
   sun.satellites.get(0).shape.setTexture(loadImage("assets/planet_infernal.png"));
   
-  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 13), 130, 10, 0, 2));
+  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 13), 150, 10, 0, 2));
   sun.satellites.get(1).shape.setTexture(loadImage("assets/planet_sweet.png"));
   
-  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 17), 240, 25, PI/50, 1));
+  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 17), 260, 25, PI/50, 1));
   sun.satellites.get(2).shape.setTexture(loadImage("assets/planet_terra.png"));
   
-  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 20), 390, 25, -PI/64, 0.4));
+  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 30), 410, 25, -PI/64, 0.4));
   sun.satellites.get(3).shape.setTexture(loadImage("assets/planet_giant.png"));
   
-  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 7), 510, 65, PI/32, 0.2));
+  sun.addSatellite(new OrbitingCelestial(createShape(SPHERE, 7), 610, 65, PI/32, 0.2));
   sun.satellites.get(4).shape.setTexture(loadImage("assets/planet_ice.png"));
   
   // Create moons 
@@ -48,9 +48,12 @@ void setup() {
   sun.satellites.get(1).addSatellite(new OrbitingCelestial(createShape(SPHERE, 3), 20, 1, 0, -3));
   sun.satellites.get(1).satellites.get(0).shape.setFill(#AAFFAA);
   
-  sun.satellites.get(2).addSatellite(new OrbitingCelestial(createShape(BOX, 7), 54, -2, -PI/24, -0.9));
-  sun.satellites.get(2).satellites.get(0).shape.setFill(#AAFFAA);
-  sun.satellites.get(2).satellites.get(0).shape.setTexture(loadImage("assets/moon_square.png"));
+  pushStyle();
+  shininess(1);
+  PShape kapselShape = loadShape("assets/kapsel.obj");
+  kapselShape.setFill(#FF3300);
+  popStyle();
+  sun.satellites.get(2).addSatellite(new OrbitingCelestial(kapselShape, 54, -2, -PI/24, -0.9));
   
   sun.satellites.get(2).addSatellite(new OrbitingCelestial(createShape(SPHERE, 8), 35, -4, 0, -1.5));
   sun.satellites.get(2).satellites.get(1).shape.setFill(#AAAAAA);

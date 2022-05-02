@@ -43,8 +43,8 @@ class OrbitingCelestial extends Celestial {
     
     noFill();
     stroke(#222222);
-    for (int i = 0; i <= int(orbit); i++) {
-      float angle = TWO_PI * (float)i / orbit;
+    for (int i = 0; i <= int(orbit * 2); i++) {
+      float angle = TWO_PI * (float)i / (orbit * 2);
       vertex(sin(angle) * calculateDistance(angle), cos(angle) * calculateDistance(angle));
     }
     endShape();

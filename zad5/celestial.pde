@@ -38,7 +38,7 @@ class Celestial implements Updateable {
     sphereDetail(points);
     sphere(radius);*/
     
-    rotateX(PI/2);
+    rotateX(-PI/2);
     emissive(emission);
     shininess(shininess);
     shape(shape);
