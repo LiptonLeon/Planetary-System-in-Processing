@@ -1,16 +1,17 @@
 class OrbitingCelestial extends Celestial {
   
-  // Orbit radius, orbiting speed, orbit squish, random start rotation
-  float orbit, baseSpeed, squish;
+  // Orbit radius, orbiting speed, orbit squish, random start rotation, orbit tilt
+  float orbit, baseSpeed, squish, tilt;
   
   // Keep celestial rotation and speed
   float rotation, speed;
   
-  OrbitingCelestial(float radius, int points, color fill, PImage texture, float orbit, float squish, float baseSpeed) {
-    super(radius, points, fill, texture);
+  OrbitingCelestial(PShape shape, float orbit, float squish, float tilt, float baseSpeed) {
+    super(shape);
     this.orbit = orbit;
     this.squish = squish;
     this.baseSpeed = baseSpeed;
+    this.tilt = tilt;
     this.rotation = random(-10, 10);
   }
   
@@ -24,14 +25,15 @@ class OrbitingCelestial extends Celestial {
     // Speed depends on distance
     speed = baseSpeed - 0.9 * (baseSpeed * distance / (orbit + squish));
     
-    // Draw orbit
-    drawOrbit();
-    
     // Draw celestial
     pushMatrix();
+    rotateX(tilt);
+    drawOrbit();
     rotate(rotation);
     translate(0, distance);
+    rotate(rotation);
     super.update(delta);
+    
     popMatrix();
   }
   
@@ -39,7 +41,7 @@ class OrbitingCelestial extends Celestial {
     pushStyle();
     beginShape();
     
-    fill(0, 0);
+    noFill();
     stroke(#222222);
     for (int i = 0; i <= int(orbit); i++) {
       float angle = TWO_PI * (float)i / orbit;

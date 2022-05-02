@@ -1,27 +1,27 @@
 class Celestial implements Updateable {
  
-  float radius;
-  int points;
-  color fill;
-  PImage texture;
+  PShape shape;
+  
   List<Celestial> satellites;
   
-  Celestial(float radius, int points, color fill, PImage texture) {
-    this.radius = radius;
-    this.fill = fill;
-    this.texture = texture;
-    
-    pushMatrix();
-    pushStyle();
-    
-    tint(fill);
-    sphereDetail(25);
-    sphere(radius * 3);
-    
-    popStyle();
-    popMatrix();
+  color fill = 255;
+  PImage texture;
+  color emission = 0;
+  float shininess = 0;
+  
+  Celestial(PShape shape) {
+    this.shape = shape;
     
     satellites = new ArrayList<Celestial>();
+  }
+  
+  void setMaterial(color emission, float shininess) {
+    this.emission = emission;
+    this.shininess = shininess;
+    pushStyle();
+    emissive(emission);
+    shininess(shininess);
+    popStyle();
   }
   
   void addSatellite(Celestial satellite) {
@@ -30,12 +30,21 @@ class Celestial implements Updateable {
   
   void update(float time) {
     
-    // Draw celestial
-    noStroke();
-    if (texture != null)
-      drawTexture();
-    else
-      drawCircle();
+    pushMatrix();
+    pushStyle();
+    /*
+    fill(fill);
+    texture(texture);
+    sphereDetail(points);
+    sphere(radius);*/
+    
+    rotateX(PI/2);
+    emissive(emission);
+    shininess(shininess);
+    shape(shape);
+    
+    popStyle();
+    popMatrix();
 
     // Draw sattelites
     for (Celestial satellite : satellites) {
@@ -43,37 +52,4 @@ class Celestial implements Updateable {
     }
   }
   
-  // Draws untextured circle
-  void drawCircle() {
-    pushMatrix();
-    pushStyle();
-    scale(radius);
-    beginShape();
-    fill(fill);
-    for (int i = 0; i < points; ++i) {
-      float cos_itd = cos(TWO_PI * (float)i / points);
-      float sin_itd = sin(TWO_PI * (float)i / points);
-      vertex(cos_itd, sin_itd);
-    }
-    endShape();
-    popStyle();
-    popMatrix();
-  }
-  
-  // Draws textured circle (worked faster than sprites during testing)
-  void drawTexture() {   
-    pushMatrix();
-    pushStyle();
-    beginShape();
-    tint(fill);
-    texture(texture);
-    for (int i = 0; i < points; ++i) {
-      float cos_itd = cos(TWO_PI * (float)i / points);
-      float sin_itd = sin(TWO_PI * (float)i / points);
-      vertex(cos_itd * radius, sin_itd * radius, cos_itd * texture.width/2 + texture.width/2, sin_itd * texture.height/2 + texture.height/2);
-    }
-    endShape();
-    popStyle();
-    popMatrix();
-  }
 }
