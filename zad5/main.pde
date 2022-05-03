@@ -7,8 +7,8 @@ float lastMillis = millis();
 void setup() {
    
   // Nothing special
-  //size(1280, 960, P3D);
-  fullScreen(P3D);
+  size(1280, 960, P3D);
+  //fullScreen(P3D);
   background(0);
   noStroke();
   noCursor();
@@ -35,9 +35,9 @@ void setup() {
   
   sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 17, "assets/planet_terra.png"), 260, 25, PI/50, 1));
   
-  sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 30, "assets/planet_terra.png"), 410, 25, -PI/64, 0.4));
+  sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 30, "assets/planet_giant.png"), 410, 25, -PI/64, 0.4));
   
-  sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 7, "assets/planet_terra.png"), 610, 65, PI/32, 0.2));
+  sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 7, "assets/planet_ice.png"), 610, 65, PI/32, 0.2));
   
   // Create moons 
   sun.getChild(0).addChild(new OrbitingCelestial(colorShape(BOX, 3, #FF2468), 16, 0, PI/24, 7));

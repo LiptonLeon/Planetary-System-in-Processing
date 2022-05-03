@@ -44,8 +44,8 @@ class Celestial extends Node {
     popMatrix();
 
     // Draw sattelites
-    for (Celestial satellite : satellites) {
-      satellite.update(time);
+    for (Node child : children) {
+      child.update(time);
     }
   }
   
