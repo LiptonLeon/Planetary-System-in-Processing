@@ -1,8 +1,6 @@
-class Celestial implements Updateable {
+class Celestial extends Node {
  
   PShape shape;
-  
-  List<Celestial> satellites;
   
   color fill = 255;
   PImage texture;
@@ -10,9 +8,8 @@ class Celestial implements Updateable {
   float shininess = 0;
   
   Celestial(PShape shape) {
+    super();
     this.shape = shape;
-    
-    satellites = new ArrayList<Celestial>();
   }
   
   void setMaterial(color emission, float shininess) {
@@ -25,7 +22,7 @@ class Celestial implements Updateable {
   }
   
   void addSatellite(Celestial satellite) {
-    satellites.add(satellite);
+    children.add(satellite);
   }
   
   void update(float time) {
