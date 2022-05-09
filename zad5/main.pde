@@ -78,8 +78,9 @@ void setup() {
 
   // Add dynamic elements to list --------------------------------------------------------------------------------------
   updateableList = new ArrayList<Updateable>();
-  updateableList.add(new CenteredCamera());
   updateableList.add(sun);
+  updateableList.add(new Skybox("assets/noise.png", "assets/star_mask.png")); // Bad for performance
+  updateableList.add(new CenteredCamera());
 }
 
 void draw() {
