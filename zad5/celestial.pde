@@ -6,19 +6,19 @@ class Celestial extends Node {
   PImage texture;
   color emission = 0;
   float shininess = 0;
+  color specular;
   
-  Celestial(PShape shape) {
+  Celestial(PShape shape, color fill, String texture) {
     super();
     this.shape = shape;
+    this.fill = fill;
+    this.texture = loadImage(texture);
   }
   
-  void setMaterial(color emission, float shininess) {
+  void setMaterial(color emission, float shininess, color specular) {
     this.emission = emission;
     this.shininess = shininess;
-    pushStyle();
-    emissive(emission);
-    shininess(shininess);
-    popStyle();
+    this.specular = specular;
   }
   
   void addSatellite(Celestial satellite) {
@@ -26,6 +26,11 @@ class Celestial extends Node {
   }
   
   void update(float time) {
+    
+    // Draw sattelites
+    for (Node child : children) {
+      child.update(time);
+    }
     
     pushMatrix();
     pushStyle();
@@ -36,6 +41,7 @@ class Celestial extends Node {
     sphere(radius);*/
     
     rotateX(-PI/2);
+    
     emissive(emission);
     shininess(shininess);
     shape(shape);
@@ -43,10 +49,6 @@ class Celestial extends Node {
     popStyle();
     popMatrix();
 
-    // Draw sattelites
-    for (Node child : children) {
-      child.update(time);
-    }
   }
   
 }

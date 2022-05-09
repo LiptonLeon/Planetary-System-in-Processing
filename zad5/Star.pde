@@ -1,9 +1,9 @@
-class Star extends Celestial {
+class StaticCelestial extends Celestial {
   
   float x, y;
   
-  Star(PShape shape, float x, float y) {
-    super(shape);
+  StaticCelestial(PShape shape, color fill, String texture, float x, float y) {
+    super(shape, fill, texture);
     this.x = x;
     this.y = y;
   }

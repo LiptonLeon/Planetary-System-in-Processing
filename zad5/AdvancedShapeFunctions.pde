@@ -1,4 +1,39 @@
-PShape materialShape(int type, float size, float shininess) {
+PShape materialPrimitive(int type, float size, color fill, float shininess, color specular) {
+  PShape ret = createShape(type, size);
+  ret.setFill(fill);
+  ret.setShininess(shininess);
+  ret.setSpecular(specular);
+  return ret;
+}
+
+PShape materialPrimitive(int type, float size, color fill, String texture, float shininess, color specular) {
+  PShape ret = createShape(type, size);
+  ret.setFill(fill);
+  ret.setTexture(loadImage(texture));
+  ret.setShininess(shininess);
+  ret.setSpecular(specular);
+  return ret;
+}
+
+PShape materialMesh(String mesh, color fill, float shininess, color specular) {
+  PShape ret = loadShape(mesh);
+  ret.setFill(fill);
+  ret.setShininess(shininess);
+  ret.setSpecular(specular);
+  return ret;
+}
+
+PShape materialMesh(String mesh, color fill, String texture, float shininess, color specular) {
+  PShape ret = loadShape(mesh);
+  ret.setFill(fill);
+  ret.setTexture(loadImage(texture));
+  ret.setShininess(shininess);
+  ret.setSpecular(specular);
+  return ret;
+}
+
+
+/*PShape materialShape(int type, float size, float shininess) {
   PShape ret = createShape(type, size);
   ret.setShininess(shininess);
   return ret;
@@ -69,7 +104,9 @@ PShape colorShape(String path, color fill, float shininess) {
   ret.setShininess(shininess);
   return ret;
 }
+*/
 
+// Epic builder fail
 /*
 class XShape {
 

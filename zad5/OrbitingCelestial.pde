@@ -6,13 +6,16 @@ class OrbitingCelestial extends Celestial {
   // Keep celestial rotation and speed
   float rotation, speed;
   
-  OrbitingCelestial(PShape shape, float orbit, float squish, float tilt, float baseSpeed) {
-    super(shape);
+  OrbitingCelestial(PShape shape, color fill, String texture) {
+    super(shape, fill, texture);
+    this.rotation = random(-10, 10);
+  }
+  
+  void setOrbit(float orbit, float baseSpeed, float squish, float tilt) {
     this.orbit = orbit;
     this.squish = squish;
     this.baseSpeed = baseSpeed;
     this.tilt = tilt;
-    this.rotation = random(-10, 10);
   }
   
   // Call every frame

@@ -17,17 +17,16 @@ void setup() {
   frameRate(200);
   
   //  Create sun
-  pushStyle();
-  emissive(255, 220, 200);
-  PShape sunShape = createShape(SPHERE, 60);
-  sunShape.setTexture(loadImage("assets/sun.png"));  
-  popStyle();
-  Celestial sun = new Star(sunShape, 0, 0);
+  Celestial sun = new StaticCelestial(createShape(SPHERE, 60), 255, "assets/sun.png", 0, 0);
+  sun.setMaterial(color(255, 220, 200), 0, 0);
   
 //PShape a = new XShape.Builder().type(SPHERE).size(9.0).shininess(0.8).texture("assets/planet_infernal.png").build();
   //  Create planets
   
-  sun.addChild(new OrbitingCelestial(materialShape(SPHERE, 9.0, 0.8, "assets/planet_infernal.png"), 95, 5, -PI/16, 3));
+  sun.addChild(new OrbitingCelestial(materialPrimitive(SPHERE, 9.0, 255, "assets/planet_infernal.png", 0, 0), 95, 5, -PI/16, 3));
+  sun.getChild(0).setMaterial();
+  sun.getChild(0).setOrbit();
+  
   //sun.addChild(new XShape.Builder().type(SPHERE).size(9.0).shininess(0.8).texture("assets/planet_infernal.png").build(), 95, 5, -PI/16, 3));
   
   
@@ -57,7 +56,7 @@ void setup() {
   sun.getChild(3).addChild(new OrbitingCelestial(colorShape(SPHERE, 3, #FF00FF), 69, 0, 0, 1.2));
   
   // Create lantern
-  sun.getChild(2).addChild(new Lantern());
+  sun.getChild(2).addChild(new Lantern(17, PI/2.2, 4, 1));
   
   // Add dynamic elements to list
   updateableList = new ArrayList<Updateable>();
