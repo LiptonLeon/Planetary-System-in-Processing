@@ -40,7 +40,7 @@ class Lantern extends Node {
     spotLight(brightness, brightness, 0, 
               0, 0, 0,
               0, 0, 1,
-              PI/1.3, 2);
+              PI/3, 2);
     
     popMatrix();
   }
