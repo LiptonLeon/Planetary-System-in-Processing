@@ -6,13 +6,20 @@ class Celestial extends Node {
   PImage texture;
   color emission = 0;
   float shininess = 0;
-  color specular;
+  color specular = 0;
   
   Celestial(PShape shape, color fill, String texture) {
     super();
     this.shape = shape;
     this.fill = fill;
     this.texture = loadImage(texture);
+  }
+  
+  Celestial(PShape shape, color fill) {
+    super();
+    this.shape = shape;
+    this.fill = fill;
+    this.texture = null;
   }
   
   void setMaterial(color emission, float shininess, color specular) {
@@ -34,16 +41,19 @@ class Celestial extends Node {
     
     pushMatrix();
     pushStyle();
-    /*
-    fill(fill);
-    texture(texture);
-    sphereDetail(points);
-    sphere(radius);*/
     
+    // Apply fill and texture
     rotateX(-PI/2);
+    fill(fill);
+    if(texture != null) 
+      texture(texture);
     
+    // Apply material
     emissive(emission);
     shininess(shininess);
+    specular(specular);
+    
+    // Draw celestial
     shape(shape);
     
     popStyle();
