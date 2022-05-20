@@ -20,7 +20,7 @@ void setup() {
   emissive(255);
   Celestial sun = new Star(createShape(SPHERE, 60), #ffffff, "assets/sun.png", 0, 0);
   emissive(0);
-  
+
   // Create planets ------------------------------------------------------------------------------------------------------
   sun.addChild(new OrbitingCelestial(createShape(SPHERE, 17.0), #ffffff, "assets/planet_terra.png"));
   sun.getChild(0).addChild(new Lantern(17, PI/2.2, 4, 1)); // Lantern's spotLight needs to be called before drawing planets and moons
@@ -80,7 +80,8 @@ void setup() {
   updateableList = new ArrayList<Updateable>();
   updateableList.add(sun);
   //updateableList.add(new Skybox("assets/noise.png", "assets/star_mask.png")); // Bad for performance
-  updateableList.add(new CenteredCamera());
+  updateableList.add(new SpaceShip(new PVector(100, 10, 100)));
+  //updateableList.add(new CenteredCamera());
 }
 
 void draw() {
@@ -94,13 +95,17 @@ void draw() {
   lastMillis = millis();
   print("Fps:", frameRate, "\n");
 
-
   // Update dynamic elements
   for (Updateable element : updateableList) {
     element.update(delta);
   }
 
+  fill(#ff0000);
+  sphere(1000);
+
   // Update statics
   Input.update();
+  
+  float t = millis() * 0.001;
 
 }
