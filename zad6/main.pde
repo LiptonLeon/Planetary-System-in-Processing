@@ -7,8 +7,8 @@ float lastMillis = 0;
 void setup() {
 
   // Nothing special
-  size(1280, 960, P3D);
-  //fullScreen(P3D);
+  //size(1280, 960, P3D);
+  fullScreen(P3D);
   background(0);
   noStroke();
   noCursor();
@@ -80,9 +80,12 @@ void setup() {
   updateableList = new ArrayList<Updateable>();
   updateableList.add(sun);
   //updateableList.add(new Skybox("assets/noise.png", "assets/star_mask.png")); // Bad for performance
-  updateableList.add(new SpaceShip(new PVector(100, 10, 100)));
+  ship = new SpaceShip(new PVector(100, 10, 100));
+  updateableList.add(ship);
   //updateableList.add(new CenteredCamera());
 }
+
+SpaceShip ship;
 
 void draw() {
 
@@ -94,18 +97,15 @@ void draw() {
   float delta = (millis() - lastMillis) / 1000.0;
   lastMillis = millis();
   print("Fps:", frameRate, "\n");
-
+  
+  // Move scene
+  ship.move(delta);
+  
   // Update dynamic elements
   for (Updateable element : updateableList) {
     element.update(delta);
   }
 
-  fill(#ff0000);
-  sphere(1000);
-
   // Update statics
   Input.update();
-  
-  float t = millis() * 0.001;
-
 }

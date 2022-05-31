@@ -40,9 +40,9 @@ class Celestial extends Node {
     }
     
     // Draw celestial
-    rotateX(-PI/2);
+    rotateX(PI * 0.5);
     shape(shape);
-    rotateX(PI/2);
+    rotateX(-PI * 0.5);
   }
   
 }

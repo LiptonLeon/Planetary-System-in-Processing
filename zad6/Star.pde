@@ -11,7 +11,6 @@ class Star extends Celestial {
   void update(float delta) {
     pushMatrix();
     translate(x, y);
-    rotate(PI/2);
     lightSpecular(255, 255, 255); // Why do I have to call it exactly here?
     pointLight(255, 200, 180, 0, 0, 0);
     super.update(delta);
