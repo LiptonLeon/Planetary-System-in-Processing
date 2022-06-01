@@ -9,10 +9,12 @@ static class Input {
   static boolean d = false;
   static boolean q = false;
   static boolean z = false;
+  static boolean space = false;
 
   static void update() {
     Input.mouseup = false;
     Input.mousedown = false;
+    Input.space = false;
   }
 }
 
@@ -49,6 +51,15 @@ void keyPressed() {
     Input.z = true;
     break;
   }
+}
+
+void keyTyped() {
+    switch(key) {
+
+  case ' ':
+    Input.space = true;
+    break;
+    }
 }
 
 void keyReleased() {
