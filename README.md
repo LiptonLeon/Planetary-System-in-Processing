@@ -1,4 +1,4 @@
-# Planetary-System-in-Processing
+# Planetary System in Processing
 
 ![Zrzut ekranu 2022-06-25 170840](https://user-images.githubusercontent.com/93220207/175779886-9471f87b-124c-4d1d-958e-a079b7feb678.png)
 
